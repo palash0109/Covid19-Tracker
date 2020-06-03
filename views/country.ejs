@@ -1,0 +1,23 @@
+<table style="width: 600px;" id="myTable">
+    <thead>
+        <th>Country</th>
+        <th>Total</th>
+        <th>Active</th>
+        <th>Recovered</th>
+        <th>Deceased</th>
+    </thead>
+    <tbody style="text-align: center;">
+        <% data["response"].forEach(function(con){ %>
+            <% if(con.country === "Italy" || con.country=== "India" ||  con.country=== "Brazil" || con.country=== "Russia" || con.country=== "USA" || con.country=== "France" || con.country=== "Germany" || con.country=== "Iran" || con.country=== "Peru" || con.country=== "Turkey"){ %>
+            <tr>
+                <td><%= con.country %></td>
+                <td><%= con.cases.total %></td>
+                <td><%= con.cases.active %> <span style="color: red"><%= con.cases.new %></span> </td>
+                <td><%= con.cases.recovered%></td>
+                <td><%= con.deaths.total%> <span style="color: red"><%= con.deaths.new %></span></td>
+            </tr>
+        <% } %>
+        <% }) %>
+
+    </tbody>
+</table>

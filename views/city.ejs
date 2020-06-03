@@ -1,0 +1,46 @@
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+<table style="width: 600px;" id="myTable">
+    <thead>
+        <th>City</th>
+        <th>active</th>
+        <th>confirmed</th>
+        <th>recovered</th>
+        <th>deceased</th>
+    </thead>
+    <tbody style="text-align: center;">
+        <% for (var city in data[state]["districtData"]) { %>
+            <tr>
+                <td><%= city %></td>
+                <td><%= data[state]["districtData"][city].active %></td>
+                <td><%= data[state]["districtData"][city].confirmed %></td>
+                <td><%= data[state]["districtData"][city].recovered %></td>
+                <td><%= data[state]["districtData"][city].deceased %></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
+
+

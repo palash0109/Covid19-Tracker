@@ -1,0 +1,61 @@
+<div>
+  <h2>INDIA COVID19 CASES</h2>
+  <ul>
+    <li>Total :<%= data["data"]["summary"]["total"] %></li>
+    <li>Recovered :<%= data["data"]["summary"]["discharged"] %></li>
+    <li>Deceased :<%= data["data"]["summary"]["deaths"] %></li>
+  </ul>
+</div>
+
+<a href="/country">Worldwide Stats</a>
+<hr>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+
+<table style="width: 600px;" id="myTable">
+    <thead>
+        <th>S.no</th>
+        <th>State</th>
+        <th>Confirmed</th>
+        <th>Recovered</th>
+    </thead>
+
+    <tbody style="text-align: center;">
+        <% var i=1 %>
+        <% data["data"]["regional"].forEach(function(state){ %>
+         
+            <tr>
+                <td><%= i++ %></td>
+                <td><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
+                <td><%= state.totalConfirmed %></td>
+                <td><%= state.discharged %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-0c88f09a-5f88-41c4-b7eb-4a93cc3e54ad"></div>
+
+
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
