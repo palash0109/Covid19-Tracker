@@ -1,0 +1,74 @@
+#header {
+    margin-top: 120px;
+}
+
+.jumbotron {
+    background-color: rgb(9, 9, 22);
+}
+
+body {
+    background-color: rgb(9, 9, 22);
+}
+
+#red{
+    background-color: #ff073a;
+    border: 1px solid #ff073a;
+    border-radius: 5%;
+    width: 90%;
+}
+#green{
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 5%;
+    width: 90%;
+}
+#blue{
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5%;
+    width: 90%;
+}
+#dark{
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 5%;
+    width: 90%;
+}
+#count{
+    font-size: 1.2rem;
+}
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+hr{
+    background-color: grey;
+    width: 330px;
+}
+
+/* table styling */
+#myTable{
+    width: 100%;
+    color:#b8c7d4;
+    line-height: 2rem;
+}
+
+td a:link{
+    color:  #b8c7d4;
+}
+
+td a:visited{
+    color:  #b8c7d4;
+} 
+
+.start tr:nth-of-type(even) td:nth-of-type(odd){
+    border: 1px solid  rgb(9, 9, 22);
+    background-color: rgb(28, 28, 48);
+    border-radius: 7px;
+}
+.even td:nth-of-type(odd){
+    border: 1px solid  rgb(9, 9, 22);
+    background-color: rgb(28, 28, 48);
+    border-radius: 7px;
+}
+

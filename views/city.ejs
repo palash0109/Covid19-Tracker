@@ -12,6 +12,7 @@
     </thead>
     <tbody style="text-align: center;">
         <% for (var city in data[state]["districtData"]) { %>
+          <% if(data[state]["districtData"].hasOwnProperty(city)){ %>
             <tr>
                 <td><%= city %></td>
                 <td><%= data[state]["districtData"][city].active %></td>
@@ -19,7 +20,7 @@
                 <td><%= data[state]["districtData"][city].recovered %></td>
                 <td><%= data[state]["districtData"][city].deceased %></td>
             </tr>
-        <% } %>
+        <% } } %>
     </tbody>
 </table>
 
@@ -44,7 +45,6 @@
     }
 </script>
 
-<%- include ("partials/footer") %>
-
+<%- include ("partials/footer") %> 
 
 

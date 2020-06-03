@@ -1,42 +1,87 @@
 <%- include ("partials/header") %>
 
-<div>
-  <h2>INDIA COVID19 CASES</h2>
-  <ul>
-    <li>Total :<%= data["data"]["summary"]["total"] %></li>
-    <li>Recovered :<%= data["data"]["summary"]["discharged"] %></li>
-    <li>Deceased :<%= data["data"]["summary"]["deaths"] %></li>
-  </ul>
+
+<div id="header" class="container">
+  <div class="jumbotron">
+    <div class="text-center text-white">
+      <h1 class="display-4 ">COVID19-INDIA</h1>
+      <p class="lead">We keep you updated!!</p>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-2 col-3 ">
+        <div id="red" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1">Confirmed</p>
+          <p id="count"><%= data["data"]["summary"]["total"] %></p>
+        </div>
+      </div> 
+      <div class="col-md-2 col-3">
+        <div id="blue" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1">Active</p>
+          <p id="count"><%= data["data"]["summary"]["total"] - data["data"]["summary"]["discharged"] - data["data"]["summary"]["deaths"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-3">
+        <div id="green" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1">Recovered</p>
+          <p id="count"><%= data["data"]["summary"]["discharged"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-3">
+        <div id="dark" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1">Deceased</p>
+          <p id="count"><%= data["data"]["summary"]["deaths"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
 </div>
 
-<a href="/country">Worldwide Stats</a>
-<hr>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="my-5">
+        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for state" title="Type in a name">
+      </div>
+      <table id="myTable" class="mb-5 start">
+        <thead>
+            <th class="pl-3">State</th>
+            <th> </th>
+            <th class="pl-3">Confirmed</th>
+            <th> </th>
+            <th class="pl-3">Active</th>
+            <th> </th>
+            <th class="pl-3">Recovered</th>
+            <th> </th>
+            <th class="pl-3">Deceased</th>
+        </thead>
+        <tbody>
+            <% data["data"]["regional"].forEach(function(state){ %>
+             
+                <tr>
+                    <td class="pl-3"><a class="state" href="/city/<%= state.loc %>"><%= state.loc %></a></td>
+                    <td> </td>
+                    <td class="pl-3 text-danger"><%= state.totalConfirmed %></td>
+                    <td> </td>
+                    <td class="pl-3 text-info"><%= state.totalConfirmed - state.discharged - state.deaths%></td>
+                    <td> </td>
+                    <td class="pl-3 text-success"><%= state.discharged %></td>
+                    <td> </td>
+                    <td class="pl-3 text-dark"><%= state.deaths %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>
 
-<table style="width: 600px;" id="myTable">
-    <thead>
-        <th>State</th>
-        <th>Confirmed</th>
-        <th>Active</th>
-        <th>Recovered</th>
-        <th>Deceased</th>
-    </thead>
-    <tbody style="text-align: center;">
-        <% data["data"]["regional"].forEach(function(state){ %>
-         
-            <tr>
-                <td><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
-                <td><%= state.totalConfirmed %></td>
-                <td><%= state.totalConfirmed - state.discharged - state.deaths%></td>
-                <td><%= state.discharged %></td>
-                <td><%= state.deaths %></td>
-            </tr>
-        <% }) %>
-    </tbody>
-</table>
 
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-0c88f09a-5f88-41c4-b7eb-4a93cc3e54ad"></div>
+
+<!-- <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-0c88f09a-5f88-41c4-b7eb-4a93cc3e54ad"></div> -->
 
 
 <script>
@@ -45,13 +90,23 @@
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
       table = document.getElementById("myTable");
+      table.classList.remove("start");
       tr = table.getElementsByTagName("tr");
+      var count = 0;
       for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            count++;
             tr[i].style.display = "";
+            if(count%2==0)
+            {
+              tr[i].classList.add("even"); 
+            }
+            else{
+              tr[i].classList.remove("even"); 
+                }
           } else {
             tr[i].style.display = "none";
           }
