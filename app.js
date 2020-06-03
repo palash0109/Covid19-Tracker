@@ -4,15 +4,14 @@ var app = express();
 app.set("view engine","ejs");
 
 
-
-
-
+//=========
+//ROUTES
+//=========
 app.get("/", function(req, res){
     request("https://api.rootnet.in/covid19-in/stats/latest", function(error, response, body){
         if(!error && response.statusCode==200)
         {
             parsedData = JSON.parse(body);
-            console.log(parsedData["data"]["summary"]["total"])
             res.render("home",{data: parsedData});
         }
     })
@@ -27,7 +26,6 @@ app.get("/city/:id", function(req, res){
             // console.log(Object.keys(parsedData[state]["districtData"]).length);
             res.render("city",{data: parsedData, state: state});
         }
-
     })
 })
 
@@ -41,7 +39,6 @@ app.get("/country",function(req, res){
           useQueryString: true
         }
       };
-      
       
       request(options, function (error, response, body) {
           if (error) throw new Error(error);

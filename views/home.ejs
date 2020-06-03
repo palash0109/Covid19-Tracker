@@ -1,3 +1,5 @@
+<%- include ("partials/header") %>
+
 <div>
   <h2>INDIA COVID19 CASES</h2>
   <ul>
@@ -11,25 +13,23 @@
 <hr>
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-
-
 <table style="width: 600px;" id="myTable">
     <thead>
-        <th>S.no</th>
         <th>State</th>
         <th>Confirmed</th>
+        <th>Active</th>
         <th>Recovered</th>
+        <th>Deceased</th>
     </thead>
-
     <tbody style="text-align: center;">
-        <% var i=1 %>
         <% data["data"]["regional"].forEach(function(state){ %>
          
             <tr>
-                <td><%= i++ %></td>
                 <td><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
                 <td><%= state.totalConfirmed %></td>
+                <td><%= state.totalConfirmed - state.discharged - state.deaths%></td>
                 <td><%= state.discharged %></td>
+                <td><%= state.deaths %></td>
             </tr>
         <% }) %>
     </tbody>
@@ -47,7 +47,7 @@
       table = document.getElementById("myTable");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[0];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -59,3 +59,5 @@
       }
     }
 </script>
+
+<%- include ("partials/footer") %>
