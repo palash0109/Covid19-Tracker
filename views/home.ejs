@@ -41,27 +41,27 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-12">
       <div class="my-5">
         <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for state" title="Type in a name">
       </div>
       <table id="myTable" class="mb-5 start">
-        <thead>
-            <th class="pl-3">State</th>
-            <th> </th>
-            <th class="pl-3">Confirmed</th>
-            <th> </th>
-            <th class="pl-3">Active</th>
-            <th> </th>
-            <th class="pl-3">Recovered</th>
-            <th> </th>
-            <th class="pl-3">Deceased</th>
+        <thead class="heading">
+            <td class="pl-3">State</td>
+            <td> </td>
+            <td class="pl-3">Confirmed</td>
+            <td> </td>
+            <td class="pl-3">Active</td>
+            <td> </td>
+            <td class="pl-3">Recovered</td>
+            <td> </td>
+            <td class="pl-3">Deceased</td>
         </thead>
         <tbody>
             <% data["data"]["regional"].forEach(function(state){ %>
              
                 <tr>
-                    <td class="pl-3"><a class="state" href="/city/<%= state.loc %>"><%= state.loc %></a></td>
+                    <td class="pl-3"><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
                     <td> </td>
                     <td class="pl-3 text-danger"><%= state.totalConfirmed %></td>
                     <td> </td>

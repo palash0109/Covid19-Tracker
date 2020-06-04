@@ -1,6 +1,7 @@
 <%- include ("partials/header") %>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<input type="text" style="margin-top: 100px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 <table style="width: 600px;" id="myTable">
     <thead>
@@ -11,6 +12,9 @@
         <th>deceased</th>
     </thead>
     <tbody style="text-align: center;">
+      <% if(state === "Dadar Nagar Haveli"){ %>
+          <% state = "Dadra and Nagar Haveli and Daman and Diu" %>
+      <% } %>
         <% for (var city in data[state]["districtData"]) { %>
           <% if(data[state]["districtData"].hasOwnProperty(city)){ %>
             <tr>
