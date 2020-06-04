@@ -14,17 +14,24 @@ app.get("/", function(req, res){
             parsedData = JSON.parse(body);
             res.render("home",{data: parsedData});
         }
+        else{
+            res.redirect("/");
+        }
     })
 });
 
 app.get("/city/:id", function(req, res){
     var state = req.params.id;
+
     request("https://api.covid19india.org/state_district_wise.json", function(error, response, body){
         if(!error && response.statusCode==200)
         {
-            parsedData = JSON.parse(body)
+            parsedData = JSON.parse(body);
             // console.log(Object.keys(parsedData[state]["districtData"]).length);
             res.render("city",{data: parsedData, state: state});
+        }
+        else{
+            res.redirect("/");
         }
     })
 })
@@ -41,10 +48,18 @@ app.get("/country",function(req, res){
       };
       
       request(options, function (error, response, body) {
-          if (error) throw new Error(error);
-          parsedData = JSON.parse(body);
-          res.render("country",{data: parsedData});
+          if(!error && response.statusCode==200){
+            parsedData = JSON.parse(body);
+            res.render("country",{data: parsedData});
+          }
+          else{
+              res.redirect("/");
+          }
       });
+});
+
+app.get("/guidelines",function(req, res){
+    res.render("guidelines");
 })
 
 

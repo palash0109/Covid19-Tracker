@@ -1,28 +1,54 @@
 <%- include ("partials/header") %>
 
-<table style="width: 600px;" id="myTable">
-    <thead>
-        <th>Country</th>
-        <th>Total</th>
-        <th>Active</th>
-        <th>Recovered</th>
-        <th>Deceased</th>
-    </thead>
-    <tbody style="text-align: center;">
-        <% data["response"].forEach(function(con){ %>
-            <% if(con.country === "Italy" || con.country=== "India" ||  con.country=== "Brazil" || con.country=== "Russia" || con.country=== "USA" || con.country=== "France" || con.country=== "Germany" || con.country=== "Iran" || con.country=== "Peru" || con.country=== "Turkey"){ %>
-            <tr>
-                <td><%= con.country %></td>
-                <td><%= con.cases.total %></td>
-                <td><%= con.cases.active %> <span style="color: red"><%= con.cases.new %></span> </td>
-                <td><%= con.cases.recovered%></td>
-                <td><%= con.deaths.total%> <span style="color: red"><%= con.deaths.new %></span></td>
-            </tr>
-        <% } %>
-        <% }) %>
+<div id="header" class="container">
+    <div class="jumbotron">
+      <div class="text-center text-white" id="jumboContent">
+        <h1 class="display-4" id="jumboHeading">COVID19-<span class="name">Worldwide</span></h1>
+        <p class="lead" id="jumboLead">We keep you updated!!</p>
+      </div>
+    </div>
+  </div>
 
-    </tbody>
-</table>
+<div class="container" >
+    <div class="row mx-1">
+        <div class="col-12">
+            <table class="mb-5 start" id="myTable">
+                <thead>
+                    <td class="pl-md-3 pl-1 heading text-white-50">Country</td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-1 heading text-white-50">Total</td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-1 heading text-white-50">Active</td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-1 heading text-white-50">Recovered</td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-1 heading text-white-50">Deceased</td>
+                </thead>
+                <tbody>
+                    <% data["response"].forEach(function(con){ %>
+                        <% if(con.country === "Italy" || con.country=== "India" ||  con.country=== "Brazil" ||
+                        con.country=== "Germany" || con.country=== "Russia" || con.country=== "USA" || con.country=== "France" || con.country=== "Iran" || con.country=== "Peru" || con.country=== "Turkey" || con.country=== "Chile" || con.country=== "Mexico" || con.country=== "Pakistan" || con.country=== "Canada"){ %>
+                        <tr>
+                            <td class="pl-md-3 pl-1"><%= con.country %></td>
+                            <td> </td>
+                            <td class="pl-md-3 pl-2 text-danger"><%= con.cases.total %></td>
+                            <td> </td>
+                            <td class="pl-md-3 pl-2 text-info"><%= con.cases.active %> <span class="text-danger"><%= con.cases.new %></span> </td>
+                            <td> </td>
+                            <td class="pl-md-3 pl-2 text-success"><%= con.cases.recovered%></td>
+                            <td> </td>
+                            <td class="pl-md-3 pl-2 text-muted"><%= con.deaths.total%> <span class="text-danger"><%= con.deaths.new %></span></td>
+                        </tr>
+                    <% } %>
+                    <% }) %>     
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
 
 <%- include ("partials/footer") %>
 

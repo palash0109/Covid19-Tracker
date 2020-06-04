@@ -1,53 +1,89 @@
 <%- include ("partials/header") %>
 
+<div id="header" class="container">
+  <div class="jumbotron">
+    <div class="text-center text-white" id="jumboContent">
+      <h1 class="display-4" id="jumboHeading">COVID19-<span class="name"><%= state %></span></h1>
+      <p class="lead" id="jumboLead">We keep you updated!!</p>
+    </div>
+  </div>
+</div>
 
-<input type="text" style="margin-top: 100px;" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<div class="container">
+  <div class="row mx-1">
+    <div class="col-12">
+      <div class="my-5">
+        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for city" title="Type in a name">
+      </div>
+    </div>
+    <table id="myTable" class="mb-5 start">
+      <thead>
+          <td class="pl-md-3 pl-1 heading text-white-50">City</td>
+          <td> </td>
+          <td class="pl-md-3 pl-1 heading text-white-50">Confirmed</td>
+          <td> </td>
+          <td class="pl-md-3 pl-1 heading text-white-50">Active</td>
+          <td> </td>
+          <td class="pl-md-3 pl-1 heading text-white-50">Recovered</td>
+          <td> </td>
+          <td class="pl-md-3 pl-1 heading text-white-50">Deceased</td>
+      </thead>
+      <tbody>
+        <% if(state === "Dadar Nagar Haveli"){ %>
+            <% state = "Dadra and Nagar Haveli and Daman and Diu" %>
+        <% } %>
+          <% for (var city in data[state]["districtData"]) { %>
+            <% if(data[state]["districtData"].hasOwnProperty(city)){ %>
+              <tr>
+                  <td class="pl-md-3 pl-1"><%= city %></td>
+                  <td> </td>
+                  <td class="pl-md-3 pl-2 text-danger"><%= data[state]["districtData"][city].confirmed %></td>
+                  <td> </td>
+                  <td class="pl-md-3 pl-2 text-info"><%= data[state]["districtData"][city].active %></td>
+                  <td> </td>
+                  <td class="pl-md-3 pl-2 text-success"><%= data[state]["districtData"][city].recovered %></td>
+                  <td> </td>
+                  <td class="pl-md-3 pl-2 text-muted"><%= data[state]["districtData"][city].deceased %></td>
+              </tr>
+          <% } } %>
+      </tbody>
+  </table>
+  
+  </div>
+</div>
 
-<table style="width: 600px;" id="myTable">
-    <thead>
-        <th>City</th>
-        <th>active</th>
-        <th>confirmed</th>
-        <th>recovered</th>
-        <th>deceased</th>
-    </thead>
-    <tbody style="text-align: center;">
-      <% if(state === "Dadar Nagar Haveli"){ %>
-          <% state = "Dadra and Nagar Haveli and Daman and Diu" %>
-      <% } %>
-        <% for (var city in data[state]["districtData"]) { %>
-          <% if(data[state]["districtData"].hasOwnProperty(city)){ %>
-            <tr>
-                <td><%= city %></td>
-                <td><%= data[state]["districtData"][city].active %></td>
-                <td><%= data[state]["districtData"][city].confirmed %></td>
-                <td><%= data[state]["districtData"][city].recovered %></td>
-                <td><%= data[state]["districtData"][city].deceased %></td>
-            </tr>
-        <% } } %>
-    </tbody>
-</table>
 
 <script>
-    function myFunction() {
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    table.classList.remove("start");
+    tr = table.getElementsByTagName("tr");
+    var count = 0;
+    for (i = 1; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          count++;
+          tr[i].style.display = "";
+          if(count%2==0)
+          {
+            tr[i].classList.add("even"); 
           }
-        }       
-      }
+          else{
+            tr[i].classList.remove("even"); 
+              }
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
     }
+  }
 </script>
+
 
 <%- include ("partials/footer") %> 
 
