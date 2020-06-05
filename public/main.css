@@ -195,3 +195,16 @@ GUIDELINES PAGE
         font-size: 0.92rem;
     }
 }
+
+/* FOOTER */
+.developerDetail a:link{
+    color: black;
+}
+.developerDetail a:visited{
+    color: black;
+}
+@media screen and (max-width: 600px){
+    .developer{
+        font-size: 0.75rem;
+    }
+}
