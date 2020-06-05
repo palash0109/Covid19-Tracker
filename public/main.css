@@ -92,7 +92,7 @@ hr{
         font-size: 0.8rem;
     }
     .indiaData{
-        font-size: 0.7rem;;
+        font-size: 0.67rem;;
     }
 }
 
@@ -161,6 +161,9 @@ GUIDELINES PAGE
 .guideBody{
 	font-family: 'Nunito', sans-serif;
 }
+#arrow{
+    background-color: rgb(9, 9, 22);
+}
 
 @media screen and (max-width: 1000px){
     .guideBody{
@@ -183,9 +186,12 @@ GUIDELINES PAGE
 }
 @media screen and (max-width: 770px){
     .guideBody{
-        font-size: 0.44rem;
+        font-size: 0.42rem;
     }
     .countryData{
         font-size: 0.69rem;
+    }
+    .guideHead{
+        font-size: 0.92rem;
     }
 }
