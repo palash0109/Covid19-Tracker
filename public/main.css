@@ -64,38 +64,43 @@ hr{
     background-color: red;
     border: 1px solid red;
     border-radius: 5%;
-    width: 95%;
     box-shadow: 6px 6px 25px black;
 }
 #green{
     background-color: rgb(16, 107, 16);
     border: 1px solid rgb(16, 107, 16);
     border-radius: 5%;
-    width: 95%;
     box-shadow: 6px 6px 25px black;
 }
 #blue{
     background-color: #007bff;
     border: 1px solid #007bff;
     border-radius: 5%;
-    width: 95%;
     box-shadow: 6px 6px 25px black;
 }
 #dark{
     background-color: #6c757d;
     border: 1px solid #6c757d;
     border-radius: 5%;
-    width: 95%;
     box-shadow: 6px 6px 25px black;
 }
 #count{
     font-size: 1.2rem;
 }
+@media screen and (max-width: 770px){
+    #count{
+        font-size: 0.8rem;
+    }
+    .indiaData{
+        font-size: 0.7rem;;
+    }
+}
+
 
 /* LASTREFRESHED */
 @media screen and (max-width: 800px){
     .lastRefreshed{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 }
 
@@ -136,7 +141,7 @@ td a:visited{
         line-height: 1.6rem;;
     }
     .heading{
-        font-size: 15px;
+        font-size: 13px;
         line-height: 4em;
     }
 }
@@ -178,9 +183,9 @@ GUIDELINES PAGE
 }
 @media screen and (max-width: 770px){
     .guideBody{
-        font-size: 0.5rem;
+        font-size: 0.44rem;
     }
-    /* .carousel-item{
-        height: 300px;
-    } */
+    .countryData{
+        font-size: 0.69rem;
+    }
 }

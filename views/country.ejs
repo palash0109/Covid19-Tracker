@@ -33,13 +33,13 @@
                         <tr>
                             <td class="pl-md-3 pl-1"><%= con.country %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 text-danger"><%= con.cases.total %></td>
+                            <td class="pl-md-3 pl-2 countryData text-danger"><%= con.cases.total %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 text-info"><%= con.cases.active %> <span class="text-danger"><%= con.cases.new %></span> </td>
+                            <td class="pl-md-3 pl-2 countryData text-info"><%= con.cases.active %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 text-success"><%= con.cases.recovered%></td>
+                            <td class="pl-md-3 pl-2 countryData text-success"><%= con.cases.recovered%></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 text-muted"><%= con.deaths.total%> <span class="text-danger"><%= con.deaths.new %></span></td>
+                            <td class="pl-md-3 pl-2 countryData text-muted"><%= con.deaths.total%></td>
                         </tr>
                     <% } %>
                     <% }) %>     
