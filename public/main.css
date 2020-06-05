@@ -109,6 +109,9 @@ hr{
     font-size: 1.2rem;
     line-height: 3em;
 }
+td a:hover{
+    font-size: 1.01rem;
+}
 td a:link{
     color:  #b8c7d4;
 }
@@ -158,6 +161,9 @@ GUIDELINES PAGE
     .guideBody{
         font-size: 0.65rem;
     }
+    /* .carousel-item{
+        height: 400px;
+    } */
 }
 @media screen and (max-width: 850px){
     .guideBody{
@@ -166,9 +172,15 @@ GUIDELINES PAGE
     .guideHead{
         font-size: 0.95rem;
     }
+    /* .carousel-item{
+        height: 350px;
+    } */
 }
 @media screen and (max-width: 770px){
     .guideBody{
         font-size: 0.5rem;
     }
+    /* .carousel-item{
+        height: 300px;
+    } */
 }

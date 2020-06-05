@@ -1,6 +1,6 @@
 <%- include ("partials/header") %>
 
-
+<!-- JUMBOTRON -->
 <div id="header" class="container">
   <div class="jumbotron">
     <div class="text-center text-white" id="jumboContent">
@@ -39,6 +39,7 @@
   </div>
 </div>
 
+<!-- Search Bar And Table -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -53,7 +54,7 @@
       </div>
 
 
-      <table id="myTable" class="mb-5 start">
+      <table id="myTable" class="mb-2 start">
         <thead >
             <td class="pl-md-3 pl-1 heading text-white-50">State</td>
             <td> </td>
@@ -82,17 +83,13 @@
             <% }) %>
         </tbody>
     </table>
+    <div class="mb-5 pl-3 text-dark">All data are taken from reliable sources</div>
     </div>
   </div>
 </div>
 
 
-
-<!-- <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-0c88f09a-5f88-41c4-b7eb-4a93cc3e54ad"></div> -->
-
-
-
+<!-- js -->
 <script>
     function myFunction() {
       var input, filter, table, tr, td, i, txtValue;
