@@ -19,9 +19,12 @@ a img.scroll{
     display: inline-block;
     transition: display 500ms;
 }
+.nav-link{
+    font-size: 1.1rem;
+}
 
 .nav-link:hover{
-    font-size: 1.06rem;
+    font-size: 1.18rem;
 }
 .navbar-dark .navbar-nav .nav-link:hover{
     color: whitesmoke;
@@ -205,6 +208,7 @@ GUIDELINES PAGE
 }
 @media screen and (max-width: 600px){
     .developer{
-        font-size: 0.75rem;
+        font-size: 0.72rem;
     }
 }
+
