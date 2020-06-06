@@ -12,7 +12,7 @@ app.get("/", function(req, res){
         if(!error && response.statusCode==200)
         {
             parsedData = JSON.parse(body);
-            res.render("home",{data: parsedData});
+            res.render("home",{data: parsedData, message: req.flash("info") });
         }
         else{
             res.redirect("/");

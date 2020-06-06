@@ -212,3 +212,21 @@ GUIDELINES PAGE
     }
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 4s;
+    opacity: 0;
+}
+
+.message{
+    margin-top: 90px;
+}
+
