@@ -2,7 +2,6 @@ var request = require("request");
 var express = require("express");
 var app = express();
 app.set("view engine","ejs");
-
 app.use(express.static("public"));
 //=========
 //ROUTES
@@ -12,7 +11,7 @@ app.get("/", function(req, res){
         if(!error && response.statusCode==200)
         {
             parsedData = JSON.parse(body);
-            res.render("home",{data: parsedData, message: req.flash("info") });
+            res.render("home",{data: parsedData});
         }
         else{
             res.redirect("/");
@@ -60,7 +59,11 @@ app.get("/country",function(req, res){
 
 app.get("/guidelines",function(req, res){
     res.render("guidelines");
-})
+});
+
+
+
+
 
 
 app.listen(process.env.PORT || 3000, function(){
