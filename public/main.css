@@ -1,0 +1,232 @@
+body {
+    background-color: rgb(9, 9, 22);
+	font-family: 'Nunito', sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+.navbar.scrolled {
+    background:  rgb(9, 9, 22);
+    transition: background 200ms;
+}
+a img{
+    display: none;
+}
+a img.scroll{
+    display: inline-block;
+    transition: display 500ms;
+}
+.nav-link{
+    font-size: 1.1rem;
+}
+
+.nav-link:hover{
+    font-size: 1.18rem;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: whitesmoke;
+}
+
+
+/* ============================
+HOME PAGE
+============================ */
+
+/* JUMBOTRON */
+#header {
+    margin-top: 120px;
+}
+.jumbotron {
+    background-color: rgb(9, 9, 22);
+    box-shadow: 6px 6px 25px black;
+}
+.name{
+    color: steelblue;
+}
+@media screen and (max-width: 800px){
+    #jumboHeading{
+        font-size: 2.2rem;
+    }
+    #jumboLead{
+        font-size: 1.1rem;
+    }
+    .indiaData{
+        font-size: 0.87rem;
+    }
+}
+hr{
+    background-color: grey;
+    width: 330px;
+}
+
+/* JUMBOTRON DATA  */
+#red{
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 5%;
+    box-shadow: 6px 6px 25px black;
+}
+#green{
+    background-color: rgb(16, 107, 16);
+    border: 1px solid rgb(16, 107, 16);
+    border-radius: 5%;
+    box-shadow: 6px 6px 25px black;
+}
+#blue{
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5%;
+    box-shadow: 6px 6px 25px black;
+}
+#dark{
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 5%;
+    box-shadow: 6px 6px 25px black;
+}
+#count{
+    font-size: 1.2rem;
+}
+@media screen and (max-width: 770px){
+    #count{
+        font-size: 0.8rem;
+    }
+    .indiaData{
+        font-size: 0.67rem;;
+    }
+}
+
+
+/* LASTREFRESHED */
+@media screen and (max-width: 800px){
+    .lastRefreshed{
+        font-size: 0.7rem;
+    }
+}
+
+/* table styling */
+#myTable{
+    width: 100%;
+    color:#b8c7d4;
+    line-height: 2rem;
+}
+.heading{
+    font-size: 1.2rem;
+    line-height: 3em;
+}
+td a:hover{
+    font-size: 1.01rem;
+}
+td a:link{
+    color:  #b8c7d4;
+}
+td a:visited{
+    color:  #b8c7d4;
+} 
+.start tr:nth-of-type(even) td:nth-of-type(odd){
+    border: 1px solid  rgb(9, 9, 22);
+    background-color: rgb(28, 28, 48);
+    border-radius: 7px;
+}
+.even td:nth-of-type(odd){
+    border: 1px solid  rgb(9, 9, 22);
+    background-color: rgb(28, 28, 48);
+    border-radius: 7px;
+}
+@media screen and (max-width: 800px){
+    #myTable{
+        font-size: 0.85rem;
+    }
+    td {
+        line-height: 1.6rem;;
+    }
+    .heading{
+        font-size: 13px;
+        line-height: 4em;
+    }
+}
+
+/* INPUT STYLING */
+#myInput{
+    box-shadow: 3px 3px 20px black;
+}
+
+
+/* ===========================
+GUIDELINES PAGE
+=========================== */
+.guideHead{
+    color: rgb(9, 9, 22);
+}
+.guideBody{
+	font-family: 'Nunito', sans-serif;
+}
+#arrow{
+    background-color: rgb(9, 9, 22);
+}
+
+@media screen and (max-width: 1000px){
+    .guideBody{
+        font-size: 0.65rem;
+    }
+    /* .carousel-item{
+        height: 400px;
+    } */
+}
+@media screen and (max-width: 850px){
+    .guideBody{
+        font-size: 0.6rem;
+    }
+    .guideHead{
+        font-size: 0.95rem;
+    }
+    /* .carousel-item{
+        height: 350px;
+    } */
+}
+@media screen and (max-width: 770px){
+    .guideBody{
+        font-size: 0.42rem;
+    }
+    .countryData{
+        font-size: 0.69rem;
+    }
+    .guideHead{
+        font-size: 0.92rem;
+    }
+}
+
+/* FOOTER */
+.developerDetail a:link{
+    color: black;
+}
+.developerDetail a:visited{
+    color: black;
+}
+@media screen and (max-width: 600px){
+    .developer{
+        font-size: 0.72rem;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 4s;
+    opacity: 0;
+}
+
+.message{
+    margin-top: 90px;
+}
+

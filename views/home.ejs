@@ -1,0 +1,134 @@
+<%- include ("partials/header") %>
+
+
+<div class="container mt-0 fadeOut">
+  <div class="alert alert-info message" role="alert">
+    Added new visualizations!! Check it out
+  </div>
+</div>
+
+<!-- JUMBOTRON -->
+<div class="container mt-0">
+  <div class="jumbotron">
+    <div class="text-center text-white" id="jumboContent">
+      <h1 class="display-4" id="jumboHeading">COVID19-<span class="name">INDIA</span></h1>
+      <p class="lead" id="jumboLead">We keep you updated!!</p>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-2 col-3 ">
+        <div id="red" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1 indiaData">Confirmed</p>
+          <p id="count"><%= data["data"]["summary"]["total"] %></p>
+        </div>
+      </div> 
+      <div class="col-md-2 col-3">
+        <div id="blue" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1 indiaData">Active</p>
+          <p id="count"><%= data["data"]["summary"]["total"] - data["data"]["summary"]["discharged"] - data["data"]["summary"]["deaths"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-3">
+        <div id="green" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1 indiaData">Recovered</p>
+          <p id="count"><%= data["data"]["summary"]["discharged"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-3">
+        <div id="dark" class="text-center text-white">
+          <p class="mb-0 pt-2 pb-1 indiaData">Deceased</p>
+          <p id="count"><%= data["data"]["summary"]["deaths"] %></p>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Search Bar And Table -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mt-md-5 mt-4 mb-4 mb-md-5">
+        <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for state" title="Type in a name">
+      </div>
+      <div class="d-flex justify-content-end text-muted lastRefreshed">
+        Click on State to get District wise data
+      </div>
+      <div class="d-flex justify-content-end text-success lastRefreshed">
+        <p class="mb-0">Last updated: <%= data.lastRefreshed.slice(0,10) %> <%= data.lastRefreshed.slice(11,19) %></p>
+      </div>
+
+
+      <table id="myTable" class="mb-2 start">
+        <thead >
+            <td class="pl-md-3 pl-1 heading text-white-50">State</td>
+            <td> </td>
+            <td class="pl-md-3 pl-1 heading text-white-50">Confirmed</td>
+            <td> </td>
+            <td class="pl-md-3 pl-1 heading text-white-50">Active</td>
+            <td> </td>
+            <td class="pl-md-3 pl-1 heading text-white-50">Recovered</td>
+            <td> </td>
+            <td class="pl-md-3 pl-1 heading text-white-50">Deceased</td>
+        </thead>
+        <tbody>
+            <% data["data"]["regional"].forEach(function(state){ %>
+             
+                <tr>
+                    <td class="pl-md-3 pl-1"><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-2 text-danger"><%= state.totalConfirmed %></td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-2 text-info"><%= state.totalConfirmed - state.discharged - state.deaths%></td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-2 text-success"><%= state.discharged %></td>
+                    <td> </td>
+                    <td class="pl-md-3 pl-2 text-muted"><%= state.deaths %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="mb-5 pl-md-3 pl-2 text-dark lastRefreshed">All data are taken from reliable sources</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- js -->
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      table.classList.remove("start");
+      tr = table.getElementsByTagName("tr");
+      var count = 0;
+      for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            count++;
+            tr[i].style.display = "";
+            if(count%2==0)
+            {
+              tr[i].classList.add("even"); 
+            }
+            else{
+              tr[i].classList.remove("even"); 
+                }
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
+
+
+
+<%- include ("partials/footer") %>
