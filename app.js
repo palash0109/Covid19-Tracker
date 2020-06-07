@@ -41,7 +41,7 @@ app.get("/country",function(req, res){
         url: 'https://covid-193.p.rapidapi.com/statistics',
         headers: {
           'x-rapidapi-host': 'covid-193.p.rapidapi.com',
-          'x-rapidapi-key': '9e186cd79fmshb9131e922592491p13682djsnaaa5b7cd2850',
+          'x-rapidapi-key': '<hidden>',
           useQueryString: true
         }
       };
