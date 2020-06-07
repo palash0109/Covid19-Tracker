@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <% data["response"].forEach(function(con){ %>
-                        <% if(con.country === "Italy" || con.country=== "India" ||  con.country=== "Brazil" ||
+                        <% if(con.country === "Italy" ||  con.country=== "Brazil" ||
                         con.country=== "Germany" || con.country=== "Russia" || con.country=== "USA" || con.country=== "France" || con.country=== "Iran" || con.country=== "Peru" || con.country=== "Turkey" || con.country=== "Chile" || con.country=== "Mexico" || con.country=== "Pakistan" || con.country=== "Canada"){ %>
                         <tr>
                             <td class="pl-md-3 pl-1"><%= con.country %></td>
@@ -48,6 +48,15 @@
         </div>
     </div>
 </div>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-11 px-0">
+        <div class="flourish-embed flourish-map" data-src="story/225979"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+      </div>
+    </div>
+  </div>
+  
 
 
 <%- include ("partials/footer") %>
