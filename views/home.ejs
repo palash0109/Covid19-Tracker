@@ -78,7 +78,11 @@
             <% data["data"]["regional"].forEach(function(state){ %>
              
                 <tr>
-                    <td class="pl-md-3 pl-1"><a href="/city/<%= state.loc %>"><%= state.loc %></a></td>
+                  <% var stateLoc = state.loc %>
+                  <% if(state.loc == "Dadra and Nagar Haveli and Daman and Diu"){ %>
+                    <% stateLoc = "Daman and Diu" %> 
+                  <% } %>
+                    <td class="pl-md-3 pl-1"><a href="/city/<%= state.loc %>"><%= stateLoc %></a></td>
                     <td> </td>
                     <td class="pl-md-3 pl-2 text-danger"><%= state.totalConfirmed %></td>
                     <td> </td>
@@ -128,7 +132,6 @@
       }
     }
 </script>
-
 
 
 <%- include ("partials/footer") %>
