@@ -192,7 +192,7 @@ GUIDELINES PAGE
         font-size: 0.42rem;
     }
     .countryData{
-        font-size: 0.69rem;
+        font-size: 0.7rem;
     }
     .guideHead{
         font-size: 0.92rem;
@@ -229,4 +229,15 @@ GUIDELINES PAGE
 .message{
     margin-top: 90px;
 }
+
+#sort{
+    float: left;
+}
+
+@media screen and (max-width: 600px){
+    #sort{
+        font-size: 0.72rem;
+    }
+}
+
 

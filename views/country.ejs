@@ -1,5 +1,8 @@
 <%- include ("partials/header") %>
 
+<% function numberWithCommas(x) { %>
+  <% return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
+<% } %>
 <!-- JUMBOTRON -->
 <div id="header" class="container">
     <div class="jumbotron">
@@ -10,8 +13,22 @@
     </div>
   </div>
 
+
+
 <!-- Table -->
 <div class="container" >
+  <div class="row mx-md-1 mb-1 mb-md-2">
+    <div class="col-12">
+      <button id="sort" class="btn btn-outline-light btn-sm ml-md-3 ml-1">Sort
+        <svg class="bi bi-arrow-down-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M11 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+          <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L11 3.707 8.354 6.354a.5.5 0 1 1-.708-.708l3-3zm-9 7a.5.5 0 0 1 .708 0L5 12.293l2.646-2.647a.5.5 0 1 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+          <path fill-rule="evenodd" d="M5 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
     <div class="row mx-md-1">
         <div class="col-12">
             <table class="mb-5 start" id="myTable">
@@ -33,13 +50,13 @@
                         <tr>
                             <td class="pl-md-3 pl-1"><%= con.country %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 countryData text-danger"><%= con.cases.total %></td>
+                            <td class="pl-md-3 pl-2 countryData text-danger"><%= numberWithCommas(con.cases.total) %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 countryData text-info"><%= con.cases.active %></td>
+                            <td class="pl-md-3 pl-2 countryData text-info"><%= numberWithCommas(con.cases.active) %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 countryData text-success"><%= con.cases.recovered%></td>
+                            <td class="pl-md-3 pl-2 countryData text-success"><%= numberWithCommas(con.cases.recovered) %></td>
                             <td> </td>
-                            <td class="pl-md-3 pl-2 countryData text-muted"><%= con.deaths.total%></td>
+                            <td class="pl-md-3 pl-2 countryData text-muted"><%= numberWithCommas(con.deaths.total) %></td>
                         </tr>
                     <% } %>
                     <% }) %>     
@@ -58,6 +75,50 @@
   </div>
   
 
+<script>
+      var button = document.querySelector('button');
+    button.addEventListener('click', function(){
+var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0,n=2;
 
+table = document.getElementById('myTable');
+switching = true;
+dir = "asc";
+while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+    for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("td")[n];
+        x=x.innerHTML.replace(/\,/g,'');
+        x=parseInt(x,10);
+        y = rows[i + 1].getElementsByTagName("td")[n];
+        y=y.innerHTML.replace(/\,/g,'');
+        y=parseInt(y,10);
+        if (dir == "asc") {
+            if (x > y) {
+                shouldSwitch= true;
+                break;
+            }
+        } else if (dir == "desc") {
+            if (x < y) {
+                shouldSwitch= true;
+                break;
+            }
+        }
+    }
+    if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount ++;      
+    } else {
+        if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+        }
+    }
+}
+
+    })
+</script>
 <%- include ("partials/footer") %>
 

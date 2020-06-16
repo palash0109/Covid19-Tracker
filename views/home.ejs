@@ -1,6 +1,8 @@
 <%- include ("partials/header") %>
 
-
+<% function numberWithCommas(x) { %>
+  <% return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
+<% } %>
 <!-- JUMBOTRON -->
 <div class="container" id="header">
   <div class="jumbotron">
@@ -14,25 +16,25 @@
       <div class="col-md-2 col-3 ">
         <div id="red" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Confirmed</p>
-          <p id="count"><%= data["data"]["summary"]["total"] %></p>
+          <p id="count"><%=  numberWithCommas(data["data"]["summary"]["total"]) %></p>
         </div>
       </div> 
       <div class="col-md-2 col-3">
         <div id="blue" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Active</p>
-          <p id="count"><%= data["data"]["summary"]["total"] - data["data"]["summary"]["discharged"] - data["data"]["summary"]["deaths"] %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["summary"]["total"] - data["data"]["summary"]["discharged"] - data["data"]["summary"]["deaths"]) %></p>
         </div>
       </div>
       <div class="col-md-2 col-3">
         <div id="green" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Recovered</p>
-          <p id="count"><%= data["data"]["summary"]["discharged"] %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["summary"]["discharged"]) %></p>
         </div>
       </div>
       <div class="col-md-2 col-3">
         <div id="dark" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Deceased</p>
-          <p id="count"><%= data["data"]["summary"]["deaths"] %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["summary"]["deaths"]) %></p>
         </div>
       </div>
       <div class="col-md-2"></div>
@@ -48,13 +50,19 @@
       <div class="mt-md-5 mt-4 mb-4 mb-md-5">
         <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for state" title="Type in a name">
       </div>
-      <div class="d-flex justify-content-end text-muted lastRefreshed">
-        Click on State to get District wise data
+      <div class=" lastRefreshed">
+        <button id="sort" class="btn btn-outline-light btn-sm ml-md-3 ml-1">Sort
+          <svg class="bi bi-arrow-down-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M11 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+            <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L11 3.707 8.354 6.354a.5.5 0 1 1-.708-.708l3-3zm-9 7a.5.5 0 0 1 .708 0L5 12.293l2.646-2.647a.5.5 0 1 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+            <path fill-rule="evenodd" d="M5 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+        </button>
+        <p class="d-flex justify-content-end text-muted mb-0">Click on State to get District wise data</p>  
       </div>
-      <div class="d-flex justify-content-end text-success lastRefreshed">
+      <div class="d-flex justify-content-end text-success lastRefreshed mb-1 mb-md-3">
         <p class="mb-0">Last updated: <%= data.lastRefreshed.slice(0,10) %> <%= data.lastRefreshed.slice(11,19) %></p>
       </div>
-
 
       <table id="myTable" class="mb-2 start">
         <thead >
@@ -78,13 +86,13 @@
                   <% } %>
                     <td class="pl-md-3 pl-1"><a href="/city/<%= state.loc %>"><%= stateLoc %></a></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-danger"><%= state.totalConfirmed %></td>
+                    <td class="pl-md-3 pl-2 text-danger"><%= numberWithCommas(state.totalConfirmed) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-info"><%= state.totalConfirmed - state.discharged - state.deaths%></td>
+                    <td class="pl-md-3 pl-2 text-info"><%= numberWithCommas(state.totalConfirmed - state.discharged - state.deaths) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-success"><%= state.discharged %></td>
+                    <td class="pl-md-3 pl-2 text-success"><%= numberWithCommas(state.discharged) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-muted"><%= state.deaths %></td>
+                    <td class="pl-md-3 pl-2 text-muted"><%= numberWithCommas(state.deaths) %></td>
                 </tr>
             <% }) %>
         </tbody>
@@ -125,6 +133,50 @@
         }       
       }
     }
+
+    var button = document.querySelector('button');
+    button.addEventListener('click', function(){
+var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0,n=2;
+
+table = document.getElementById('myTable');
+switching = true;
+dir = "asc";
+while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+    for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("td")[n];
+        x=x.innerHTML.replace(/\,/g,'');
+        x=parseInt(x,10);
+        y = rows[i + 1].getElementsByTagName("td")[n];
+        y=y.innerHTML.replace(/\,/g,'');
+        y=parseInt(y,10);
+        if (dir == "asc") {
+            if (x > y) {
+                shouldSwitch= true;
+                break;
+            }
+        } else if (dir == "desc") {
+            if (x < y) {
+                shouldSwitch= true;
+                break;
+            }
+        }
+    }
+    if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount ++;      
+    } else {
+        if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+        }
+    }
+}
+
+    })
 </script>
 
 
