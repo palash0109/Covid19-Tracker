@@ -16,25 +16,25 @@
       <div class="col-md-2 col-3 ">
         <div id="red" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Confirmed</p>
-          <p id="count"><%=  numberWithCommas(data["data"]["summary"]["total"]) %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["total"].confirmed) %></p>
         </div>
       </div> 
       <div class="col-md-2 col-3">
         <div id="blue" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Active</p>
-          <p id="count"><%= numberWithCommas(data["data"]["summary"]["total"] - data["data"]["summary"]["discharged"] - data["data"]["summary"]["deaths"]) %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["total"].active) %></p>
         </div>
       </div>
       <div class="col-md-2 col-3">
         <div id="green" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Recovered</p>
-          <p id="count"><%= numberWithCommas(data["data"]["summary"]["discharged"]) %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["total"].recovered) %></p>
         </div>
       </div>
       <div class="col-md-2 col-3">
         <div id="dark" class="text-center text-white">
           <p class="mb-0 pt-2 pb-1 indiaData">Deceased</p>
-          <p id="count"><%= numberWithCommas(data["data"]["summary"]["deaths"]) %></p>
+          <p id="count"><%= numberWithCommas(data["data"]["total"].deaths) %></p>
         </div>
       </div>
       <div class="col-md-2"></div>
@@ -77,22 +77,22 @@
             <td class="pl-md-3 pl-1 heading text-white-50">Deceased</td>
         </thead>
         <tbody>
-            <% data["data"]["regional"].forEach(function(state){ %>
+            <% data["data"]["statewise"].forEach(function(states){ %>
              
                 <tr>
-                  <% var stateLoc = state.loc %>
-                  <% if(state.loc == "Dadra and Nagar Haveli and Daman and Diu"){ %>
+                  <% var stateLoc = states.state %>
+                  <% if(states.state == "Dadra and Nagar Haveli and Daman and Diu"){ %>
                     <% stateLoc = "Daman and Diu" %> 
                   <% } %>
-                    <td class="pl-md-3 pl-1"><a href="/city/<%= state.loc %>"><%= stateLoc %></a></td>
+                    <td class="pl-md-3 pl-1"><a href="/city/<%= states.state %>"><%= stateLoc %></a></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-danger"><%= numberWithCommas(state.totalConfirmed) %></td>
+                    <td class="pl-md-3 pl-2 text-danger"><%= numberWithCommas(states.confirmed) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-info"><%= numberWithCommas(state.totalConfirmed - state.discharged - state.deaths) %></td>
+                    <td class="pl-md-3 pl-2 text-info"><%= numberWithCommas(states.active) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-success"><%= numberWithCommas(state.discharged) %></td>
+                    <td class="pl-md-3 pl-2 text-success"><%= numberWithCommas(states.recovered) %></td>
                     <td> </td>
-                    <td class="pl-md-3 pl-2 text-muted"><%= numberWithCommas(state.deaths) %></td>
+                    <td class="pl-md-3 pl-2 text-muted"><%= numberWithCommas(states.deaths) %></td>
                 </tr>
             <% }) %>
         </tbody>

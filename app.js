@@ -7,7 +7,7 @@ app.use(express.static("public"));
 //ROUTES
 //=========
 app.get("/", function(req, res){
-    request("https://api.rootnet.in/covid19-in/stats/latest", function(error, response, body){
+    request("https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise", function(error, response, body){
         if(!error && response.statusCode==200)
         {
             parsedData = JSON.parse(body);
