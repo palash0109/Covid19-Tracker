@@ -46,6 +46,9 @@ HOME PAGE
 .name{
     color: steelblue;
 }
+/* .indiaData{
+    padding: 10px;
+} */
 @media screen and (max-width: 800px){
     #jumboHeading{
         font-size: 2.2rem;
@@ -96,6 +99,12 @@ hr{
     }
     .indiaData{
         font-size: 0.67rem;;
+    }
+    #red, #blue, #green, #dark{
+        width: 4rem;
+    }
+    hr{
+        width: 300px;
     }
 }
 
@@ -206,9 +215,27 @@ GUIDELINES PAGE
 .developerDetail a:visited{
     color: black;
 }
+.developer div{
+    font-size: 1.2rem;
+}
+.developerDetail{
+    font-size: 1.1rem;
+}
+/* .developer p{
+    padding-top: 15px;
+}
+.developer div{
+    font-size: 1.5rem;
+}
+.developer .developerDetail{
+    font-size: 1.2rem;
+} */
 @media screen and (max-width: 600px){
-    .developer{
-        font-size: 0.72rem;
+    .developer div{
+        font-size: 1rem;
+    }
+    .developerDetail{
+        font-size: 0.9rem;
     }
 }
 
